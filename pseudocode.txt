@@ -1,33 +1,16 @@
-DEBUT
-    longueur <- 0
-    mots <- 0
-    voyelles <- 0
-    voyelles_set <- {'a', 'e', 'i', 'o', 'u', 'y', 'A', 'E', 'I', 'O', 'U', 'Y'}
-    espace_precedent <- VRAI
-    
-    AFFICHER "Entrez une phrase terminée par un point : "
-    LIRE phrase
-    
-    SI phrase[-1] = '.' ALORS
-        POUR CHAQUE caractere DANS phrase FAIRE
-            longueur <- longueur + 1
-            
-            SI caractere DANS voyelles_set ALORS
-                voyelles <- voyelles + 1
-            FIN SI
-            
-            SI caractere = ' ' ALORS
-                espace_precedent <- VRAI
-            SINON SI espace_precedent = VRAI ET caractere <> '.' ALORS
-                mots <- mots + 1
-                espace_precedent <- FAUX
-            FIN SI
-        FIN POUR
+function insertionSort(arr) {
+    for (let i = 1; i < arr.length; i++) {
+        let key = arr[i];
+        let j = i - 1;
         
-        AFFICHER "Longueur de la phrase :", longueur
-        AFFICHER "Nombre de mots :", mots
-        AFFICHER "Nombre de voyelles :", voyelles
-    SINON
-        AFFICHER "La phrase doit se terminer par un point."
-    FIN SI
-FIN
+        while (j >= 0 && arr[j] > key) {
+            arr[j + 1] = arr[j];
+            j = j - 1;
+        }
+        arr[j + 1] = key;
+    }
+    return arr;
+}
+
+let array = [5, 3, 8, 4, 2];
+console.log(insertionSort(array));
